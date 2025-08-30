@@ -11,6 +11,7 @@ app = FastAPI()
 
 models.Base.metadata.create_all(engine)
 
+# Dependency Injection for database session
 def get_db():
     db = SessionLocal()
     try:
@@ -18,6 +19,7 @@ def get_db():
     finally:
         db.close()  
 
+# create
 @app.post('/product')
 def add_product(request: schemas.Product, db: Session =  Depends(get_db)):
     new_product = models.Product(
@@ -26,3 +28,17 @@ def add_product(request: schemas.Product, db: Session =  Depends(get_db)):
     db.commit()
     db.refresh(new_product)
     return request
+
+# read
+# get all products
+@app.get('/products')
+def get_all_products(db: Session = Depends(get_db)):
+    products = db.query(models.Product).all()
+    return products
+
+
+# get product by id
+@app.get('/product/{id}')
+def get_product(id , db: Session = Depends(get_db)):
+    product=db.query(models.Product).filter(models.Product.id == id).first()
+    return product
