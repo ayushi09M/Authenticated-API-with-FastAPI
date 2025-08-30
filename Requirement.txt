@@ -1,1 +1,12 @@
-Learning creating web development using fastAPI with python and authentication.
+Installation Stuff:
+1. pip install fastapi
+2. pip install uvicorn
+3. pip install python-multipart
+
+Common instructions:
+1) Run the API
+Start service: uvicorn main:app --reload
+
+2) Automatic Documentation: No need to inject any dependency like Spring Boot
+1. http://127.0.0.1:8000/docs
+2. http://127.0.0.1:8000/redoc (another uvicorn)
