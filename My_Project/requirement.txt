@@ -1,0 +1,16 @@
+1) first create virtual env:
+python3 -m virtualenv env
+
+2) then activate it env:
+
+3) then install:
+1. uvicorn
+2. sqlalchemy
+3. fastapi
+4. pydantic
+
+
+(pip3 install -r requirement.txt)
+
+
+http://127.0.0.1:8000/docs
