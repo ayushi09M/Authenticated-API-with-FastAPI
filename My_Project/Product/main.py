@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi import status
 from fastapi.params import Depends
 from sqlalchemy.orm import Session
 from . import schemas
@@ -21,7 +22,7 @@ def get_db():
         db.close()  
 
 # create
-@app.post('/product')
+@app.post('/product', status_code=status.HTTP_201_CREATED)
 def add_product(request: schemas.Product, db: Session =  Depends(get_db)):
     new_product = models.Product(
         name=request.name ,description=request.description, price=request.price)
@@ -46,7 +47,7 @@ def get_product(id , db: Session = Depends(get_db)):
 
 
 # delete 
-@app.delete('/product/{id}')
+@app.delete('/product/{id}', status_code=201)
 def delete_product(id, db: Session = Depends(get_db)):
     product = db.query(models.Product).filter(models.Product.id == id).delete(synchronize_session=False)
     db.commit()
