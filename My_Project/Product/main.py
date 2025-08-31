@@ -50,3 +50,14 @@ def delete_product(id, db: Session = Depends(get_db)):
     product = db.query(models.Product).filter(models.Product.id == id).delete(synchronize_session=False)
     db.commit()
     return {'product deleted successfully': product}
+
+
+# Update
+@app.put('/product/{id}')
+def update_product(id, request: schemas.Product, db: Session = Depends(get_db)):
+    product = db.query(models.Product).filter(models.Product.id == id)
+    if not product.first():
+        return {'message': 'product not found'}
+    product.update(request.dict())
+    db.commit()
+    return 'product updated successfully'   
