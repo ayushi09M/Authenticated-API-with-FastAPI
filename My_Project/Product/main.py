@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from . import schemas
 from . import models
 from .database import engine, SessionLocal
+from typing import List
 
 # (if you have schemas.py inside a package like Product):
 # from Product import schemas
@@ -31,14 +32,14 @@ def add_product(request: schemas.Product, db: Session =  Depends(get_db)):
 
 # read
 # get all products
-@app.get('/products')
+@app.get('/products', response_model = List[schemas.DisplayProduct])
 def get_all_products(db: Session = Depends(get_db)):
     products = db.query(models.Product).all()
     return products
 
 
 # get product by id
-@app.get('/product/{id}')
+@app.get('/product/{id}', response_model = schemas.DisplayProduct)
 def get_product(id , db: Session = Depends(get_db)):
     product=db.query(models.Product).filter(models.Product.id == id).first()
     return product

@@ -7,3 +7,12 @@ class Product(BaseModel):
     name:str
     description:str
     price:float
+
+# Hide informaation like price while creating a product, 
+# and show only those information which we want to show
+class DisplayProduct(BaseModel):
+    name:str
+    description:str
+    
+    class Config:
+        orm_mode = True
