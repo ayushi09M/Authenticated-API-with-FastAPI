@@ -1,0 +1,28 @@
+1) ****Don't forgot to add __init__.py file in main.py class package.
+
+2) Download: TablePlus DB
+
+3) first create virtual env:
+python -m venv env
+
+4) then activate it env:
+
+5) then install:
+1. uvicorn
+2. sqlalchemy
+3. fastapi
+4. pydantic
+5. passlib : for hasing pwd
+6. bcrypt : for decrypting pwd
+
+
+6) (pip3 install -r requirement.txt)
+
+
+7)  FastAPI
+http://127.0.0.1:8000/docs
+
+8_ DB Tutorial User Guide:
+https://fastapi.tiangolo.com/tutorial/sql-databases/
+
+9) http://127.0.0.1:5500/python-coading-expertise/
